@@ -1,4 +1,3 @@
-from typing import Final 
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, ConversationHandler
 import os
@@ -77,15 +76,14 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 if __name__ == '__main__':
     app = Application.builder().token(TOKEN).build()
-    print('Starting bot...')
     
     # Define the conversation handler with states
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
         states={
             SELECTING_OPTION: [MessageHandler(filters.TEXT, selecting_option)],
-            GETTING_GARMENT: [MessageHandler(filters.PHOTO | filters.Document.ALL, handle_garment_image)],
-            GETTING_PERSON: [MessageHandler(filters.PHOTO | filters.Document.ALL, handle_person_image)],
+            GETTING_GARMENT: [MessageHandler(filters.PHOTO | filters.DOCUMENT, handle_garment_image)],
+            GETTING_PERSON: [MessageHandler(filters.PHOTO | filters.DOCUMENT, handle_person_image)],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
     )
@@ -94,5 +92,4 @@ if __name__ == '__main__':
     app.add_handler(conv_handler)
 
     # Start polling
-    print('Polling...')
     app.run_polling()

@@ -1,7 +1,7 @@
 from typing import Final 
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, ConversationHandler
-import os
+import os 
 
 TOKEN: Final = '7709502643:AAHtbgPqzYvJjkWly3dGhf7zAFKvztfRUYs'
 bot_username: Final = '@VirtualTrial_sark42_bot'
@@ -24,7 +24,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def selecting_option(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text.lower()
-    
     if 'garment' in user_message:
         await update.message.reply_text("Please send me an image of the garment.")
         return GETTING_GARMENT  # Move to the garment input state
@@ -75,17 +74,30 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Conversation canceled.")
     return ConversationHandler.END  # End the conversation
 
+async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Conversation canceled.")
+    return ConversationHandler.END  # End the conversation
+
+# error
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print(f'Update {update} caused error {context.error}')
+
 if __name__ == '__main__':
-    app = Application.builder().token(TOKEN).build()
     print('Starting bot...')
-    
+    app = Application.builder().token(TOKEN).build()
+
+    # messages
+    # app.add_handler(MessageHandler(filters.TEXT, handle_message))
+    # Photo and document handler (for both JPEG and other images like PNG)
+    # app.add_handler(MessageHandler(filters.PHOTO | filters.Document.IMAGE, handle_photo_or_document))
+
     # Define the conversation handler with states
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
         states={
             SELECTING_OPTION: [MessageHandler(filters.TEXT, selecting_option)],
-            GETTING_GARMENT: [MessageHandler(filters.PHOTO | filters.Document.ALL, handle_garment_image)],
-            GETTING_PERSON: [MessageHandler(filters.PHOTO | filters.Document.ALL, handle_person_image)],
+            GETTING_GARMENT: [MessageHandler(filters.PHOTO, handle_garment_image)],
+            GETTING_PERSON: [MessageHandler(filters.PHOTO, handle_garment_image)],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
     )
@@ -93,6 +105,9 @@ if __name__ == '__main__':
     # Add the conversation handler to the application
     app.add_handler(conv_handler)
 
-    # Start polling
+    # errors
+    app.add_error_handler(error)
+
+    # pools the bot
     print('Polling...')
-    app.run_polling()
+    app.run_polling(poll_interval=3, timeout=20)

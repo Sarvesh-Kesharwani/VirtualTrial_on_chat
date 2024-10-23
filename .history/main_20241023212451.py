@@ -78,7 +78,6 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == '__main__':
     app = Application.builder().token(TOKEN).build()
     print('Starting bot...')
-    
     # Define the conversation handler with states
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],

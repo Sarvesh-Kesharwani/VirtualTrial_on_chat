@@ -1,0 +1,22 @@
+{
+    "sourceFile": "test_hg.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1729688297427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1729691539738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-# from diffusers import DiffusionPipeline\r\n+from diffusers import DiffusionPipeline\r\n \r\n-# pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n-# prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n-# image = pipe(prompt).images[0]\r\n+pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n+prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n+image = pipe(prompt).images[0]\r\n+DOWNLOAD_PATH: Final = './downloads/'  # Define a directory to save images\r\n"
+                }
+            ],
+            "date": 1729688297427,
+            "name": "Commit-0",
+            "content": "# from diffusers import DiffusionPipeline\r\n\r\n# pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n# prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n# image = pipe(prompt).images[0]\r\n"
+        }
+    ]
+}

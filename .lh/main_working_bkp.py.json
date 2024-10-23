@@ -1,0 +1,18 @@
+{
+    "sourceFile": "main_working_bkp.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1729691551064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1729691551063,
+            "name": "Commit-0",
+            "content": "from typing import Final \r\nfrom telegram import Update\r\nfrom telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes\r\n\r\nTOKEN: Final = '7709502643:AAHtbgPqzYvJjkWly3dGhf7zAFKvztfRUYs'\r\nbot_username: Final = '@VirtualTrial_sark42_bot'\r\n\r\n# commands\r\nasync def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):\r\n    await update.message.reply_text('Welcome to Virtual Trial Bot!')\r\n\r\nasync def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):\r\n    await update.message.reply_text('plz type smth so i can respond to u!')\r\n\r\nasync def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):\r\n    await update.message.reply_text('this is a custom command!')\r\n\r\n# responses\r\ndef handle_response(text: str) -> str:\r\n    processed: str = text.lower()\r\n\r\n    if 'hello' in processed:\r\n        return 'Hello! How can I help you?'\r\n    if 'how are you' in processed:\r\n        return 'I am fine, thank you! How are you?'\r\n    if 'i love python' in processed:\r\n        return 'I love python too!'\r\n    return 'I am sorry, I do not understand you!'\r\n\r\nasync def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):\r\n    message_type: str = update.message.chat.type\r\n    text: str = update.message.text\r\n\r\n    print(f'User ({update.message.chat.id}) in {message_type}: \"{text}\"')\r\n    response: str = handle_response(text)\r\n\r\n    print('Bot: ', response)\r\n    await update.message.reply_text(response)\r\n\r\n# error\r\nasync def error(update: Update, context: ContextTypes.DEFAULT_TYPE):\r\n    print(f'Update {update} caused error {context.error}')\r\n\r\nif __name__ == '__main__':\r\n    print('Starting bot...')\r\n    app = Application.builder().token(TOKEN).build()\r\n\r\n    # commands\r\n    app.add_handler(CommandHandler('start', start_command))\r\n    app.add_handler(CommandHandler('help', help_command))\r\n    app.add_handler(CommandHandler('custom', custom_command))\r\n\r\n    # messages\r\n    app.add_handler(MessageHandler(filters.TEXT, handle_message))\r\n\r\n    # errors\r\n    app.add_error_handler(error)\r\n\r\n    # pools the bot\r\n    print('Polling...')\r\n    app.run_polling(poll_interval=3, timeout=20)"
+        }
+    ]
+}
