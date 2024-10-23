@@ -1,0 +1,54 @@
+{
+    "sourceFile": "main.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1729681456326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1729681462432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,12 @@\n from diffusers import DiffusionPipeline\r\n+import torch\r\n \r\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n \r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n \r\n-from diffusers import DiffusionPipeline\r\n-import torch\r\n-\r\n pipeline = DiffusionPipeline.from_pretrained(\"stable-diffusion-v1-5/stable-diffusion-v1-5\", torch_dtype=torch.float16)\r\n pipeline.to(\"cuda\")\r\n pipeline(\"An image of a squirrel in Picasso style\").images[0]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729681486693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n from diffusers import DiffusionPipeline\r\n import torch\r\n \r\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n-\r\n+pipeline.to(\"cuda\")\r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n \r\n pipeline = DiffusionPipeline.from_pretrained(\"stable-diffusion-v1-5/stable-diffusion-v1-5\", torch_dtype=torch.float16)\r\n-pipeline.to(\"cuda\")\r\n pipeline(\"An image of a squirrel in Picasso style\").images[0]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729681492410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n from diffusers import DiffusionPipeline\r\n import torch\r\n \r\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n-pipeline.to(\"cuda\")\r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1729681506878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,4 @@\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n-\r\n-pipeline = DiffusionPipeline.from_pretrained(\"stable-diffusion-v1-5/stable-diffusion-v1-5\", torch_dtype=torch.float16)\r\n-pipeline(\"An image of a squirrel in Picasso style\").images[0]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729681520265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n from diffusers import DiffusionPipeline\r\n-import torch\r\n \r\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n"
+                },
+                {
+                    "date": 1729681867654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,4 +3,5 @@\n pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n+\r\n"
+                },
+                {
+                    "date": 1729681873930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,5 @@\n prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n image = pipe(prompt).images[0]\r\n \r\n \r\n+from typing import fi\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1729681891695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,4 +5,5 @@\n image = pipe(prompt).images[0]\r\n \r\n \r\n from typing import Final \r\n+\r\n"
+                },
+                {
+                    "date": 1729681937779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+from diffusers import DiffusionPipeline\r\n+\r\n+pipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n+prompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\n+image = pipe(prompt).images[0]\r\n+\r\n+\r\n+from typing import Final \r\n+\r\n+TOKEN: Final = '7709502643:AAHtbgPqzYvJjkWly3dGhf7zAFKvztfRUYs'\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1729681456326,
+            "name": "Commit-0",
+            "content": "from diffusers import DiffusionPipeline\r\n\r\npipe = DiffusionPipeline.from_pretrained(\"yisol/IDM-VTON\")\r\n\r\nprompt = \"Astronaut in a jungle, cold color palette, muted colors, detailed, 8k\"\r\nimage = pipe(prompt).images[0]\r\n\r\n\r\nfrom diffusers import DiffusionPipeline\r\nimport torch\r\n\r\npipeline = DiffusionPipeline.from_pretrained(\"stable-diffusion-v1-5/stable-diffusion-v1-5\", torch_dtype=torch.float16)\r\npipeline.to(\"cuda\")\r\npipeline(\"An image of a squirrel in Picasso style\").images[0]"
+        }
+    ]
+}
